@@ -1,0 +1,28 @@
+{
+  "name": "simpletalk",
+  "description": "SimpleTalk, Smalltalk-like interpreter in JavaScript, WIP",
+  "keywords": [
+    "smalltalk",
+    "interpreter",
+    "programming",
+    "vm"
+  ],
+  "version": "0.0.1alpha",
+  "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajlopez/SimpleTalk.git"
+  },
+  "main": "./lib/simpletalk.js",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "test": "simpleunit ./test -r"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
