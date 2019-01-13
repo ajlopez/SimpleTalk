@@ -45,5 +45,7 @@ exports['new instance'] = function (test) {
     test.ok(instance);
     test.equal(typeof instance, 'object');
     test.equal(instance.class(), klass);
+    test.equal(instance.class().name(), 'Person');
+    test.equal(instance.class().class().name(), 'Person class');
 };
 
