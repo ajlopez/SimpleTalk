@@ -37,3 +37,13 @@ exports['class object'] = function (test) {
     test.deepEqual(klass.instanceVarNames().value(), [ 'name', 'age' ]);
 };
 
+exports['new instance'] = function (test) {
+    var klass = objects.class('Person', null, [ 'name', 'age' ], []);
+    
+    var instance = klass.newInstance();
+    
+    test.ok(instance);
+    test.equal(typeof instance, 'object');
+    test.equal(instance.class(), klass);
+};
+
