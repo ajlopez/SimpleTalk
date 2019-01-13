@@ -10,6 +10,15 @@ exports['create empty object'] = function (test) {
     test.equal(object.get(0), null);
 };
 
+exports['object class'] = function (test) {
+    const object = objects.object();
+    
+    test.ok(object.class());
+    test.equal(object.class().name(), 'Object');
+    test.equal(object.class().class().name(), 'Object class');
+    test.strictEqual(object.class().indexed(), false);
+};
+
 exports['put and get value'] = function (test) {
     const object = objects.object();
     
