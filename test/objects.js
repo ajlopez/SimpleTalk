@@ -1,8 +1,8 @@
 
-var objects = require('../lib/objects');
+const objects = require('../lib/objects');
 
 exports['create empty object'] = function (test) {
-    var object = objects.object();
+    const object = objects.object();
     
     test.ok(object);
     test.equal(typeof object, 'object');
@@ -11,14 +11,14 @@ exports['create empty object'] = function (test) {
 };
 
 exports['put and get value'] = function (test) {
-    var object = objects.object();
+    const object = objects.object();
     
     object.put(0, 42);
     test.equal(object.get(0), 42);
 };
 
 exports['value object'] = function (test) {
-    var value = objects.value(42);
+    const value = objects.value(42);
     
     test.ok(value);
     test.equal(typeof value, 'object');
@@ -26,7 +26,7 @@ exports['value object'] = function (test) {
 };
 
 exports['class object'] = function (test) {
-    var klass = objects.class('Person', null, [ 'name', 'age' ], []);
+    const klass = objects.class('Person', null, [ 'name', 'age' ], []);
     
     test.ok(klass);
     test.equal(typeof klass, 'object');
@@ -38,9 +38,9 @@ exports['class object'] = function (test) {
 };
 
 exports['new instance'] = function (test) {
-    var klass = objects.class('Person', null, [ 'name', 'age' ], []);
+    const klass = objects.class('Person', null, [ 'name', 'age' ], []);
     
-    var instance = klass.newInstance();
+    const instance = klass.newInstance();
     
     test.ok(instance);
     test.equal(typeof instance, 'object');
