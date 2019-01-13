@@ -25,3 +25,15 @@ exports['value object'] = function (test) {
     test.equal(value.value(), 42);
 };
 
+exports['class object'] = function (test) {
+    var klass = objects.class('Person', null, [ 'name', 'age' ], []);
+    
+    test.ok(klass);
+    test.equal(typeof klass, 'object');
+    
+    test.equal(klass.name(), 'Person');
+    test.equal(klass.superclass(), null);
+    test.equal(klass.instanceSize(), 2);
+    test.deepEqual(klass.instanceVarNames().value(), [ 'name', 'age' ]);
+};
+
