@@ -16,6 +16,7 @@ exports['object class'] = function (test) {
     test.ok(object.class());
     test.equal(object.class().name(), 'Object');
     test.equal(object.class().class().name(), 'Object class');
+    test.equal(object.class().class().class().name(), 'Metaclass');
     test.strictEqual(object.class().indexed(), false);
 };
 
