@@ -36,15 +36,19 @@ exports['value object'] = function (test) {
 };
 
 exports['class object'] = function (test) {
-    const klass = objects.class('Person', null, [ 'name', 'age' ], []);
+    const klass = objects.class('Person', null, [ 'name', 'age' ], [ 'count' ]);
     
     test.ok(klass);
     test.equal(typeof klass, 'object');
     
     test.equal(klass.name(), 'Person');
+    test.equal(klass.class().name(), 'Person class');
+    test.equal(klass.class().class().name(), 'Metaclass');
     test.equal(klass.superclass(), null);
     test.equal(klass.instanceSize(), 2);
     test.deepEqual(klass.instanceVarNames().value(), [ 'name', 'age' ]);
+    test.deepEqual(klass.classVarNames().value(), [ 'count' ]);
+    test.deepEqual(klass.class().instanceVarNames().value(), [ 'count' ]);
 };
 
 exports['new instance'] = function (test) {
