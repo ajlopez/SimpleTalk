@@ -51,6 +51,30 @@ exports['class object'] = function (test) {
     test.deepEqual(klass.class().instanceVarNames().value(), [ 'count' ]);
 };
 
+exports['class with superclass object'] = function (test) {
+    const superklass = objects.class('Animal', null, [ 'age' ], [ 'count' ]);
+    const klass = objects.class('Person', superklass, [ 'name' ], [ ]);
+    
+    test.ok(klass);
+    test.equal(typeof klass, 'object');
+    
+    test.equal(klass.name(), 'Person');
+    test.equal(klass.class().name(), 'Person class');
+    test.equal(klass.class().class().name(), 'Metaclass');
+    test.equal(klass.superclass(), superklass);
+    test.equal(klass.instanceSize(), 2);
+
+    test.deepEqual(klass.instanceVarNames().value(), [ 'name' ]);
+    test.deepEqual(klass.classVarNames().value(), [ ]);
+    test.deepEqual(klass.class().instanceVarNames().value(), [ ]);
+
+    test.deepEqual(superklass.instanceVarNames().value(), [ 'age' ]);
+    test.deepEqual(superklass.classVarNames().value(), [ 'count' ]);
+    test.deepEqual(superklass.class().instanceVarNames().value(), [ 'count' ]);
+    
+    test.equal(klass.class().superclass(), superklass.class());
+};
+
 exports['new instance'] = function (test) {
     const klass = objects.class('Person', null, [ 'name', 'age' ], []);
     
