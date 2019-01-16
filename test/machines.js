@@ -26,3 +26,19 @@ exports['add two values'] = function (test) {
     test.equal(stack[0].value(), 3);
 };
 
+exports['subtract two values'] = function (test) {
+    var one = objects.value(1);
+    var two = objects.value(2);
+    
+    const machine = machines.machine([ one, two ]);
+    
+    machine.execute([ OpCodes.LoadValue, 0, OpCodes.LoadValue, 1, OpCodes.Subtract ]);
+    
+    var stack = machine.stack();
+    
+    test.ok(stack);
+    test.ok(Array.isArray(stack));
+    test.equal(stack.length, 1);
+    test.equal(stack[0].value(), 1);
+};
+
