@@ -56,3 +56,19 @@ exports['self'] = function (test) {
     test.strictEqual(stack[0], obj);
 };
 
+exports['load instance variable'] = function (test) {
+    const obj = objects.object();
+    obj.put(0, objects.value(42));
+    
+    const machine = machines.machine([ ], obj);
+    
+    machine.execute([ OpCodes.LoadVariable, 0 ]);
+    
+    var stack = machine.stack();
+    
+    test.ok(stack);
+    test.ok(Array.isArray(stack));
+    test.equal(stack.length, 1);
+    test.strictEqual(stack[0].value(), 42);
+};
+
