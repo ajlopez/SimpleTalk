@@ -10,6 +10,20 @@ exports['create machine'] = function (test) {
     test.equal(typeof machine, 'object');
 };
 
+exports['load argument'] = function (test) {    
+    var answer = objects.value(42);
+    const machine = machines.machine([ ]);
+    
+    machine.execute([ OpCodes.LoadArgument, 0 ], [ answer ]);
+    
+    var stack = machine.stack();
+    
+    test.ok(stack);
+    test.ok(Array.isArray(stack));
+    test.equal(stack.length, 1);
+    test.equal(stack[0].value(), 42);
+};
+
 exports['add two values'] = function (test) {
     var one = objects.value(1);
     var two = objects.value(2);
