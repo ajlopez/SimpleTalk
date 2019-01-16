@@ -42,3 +42,17 @@ exports['subtract two values'] = function (test) {
     test.equal(stack[0].value(), 1);
 };
 
+exports['self'] = function (test) {
+    const obj = objects.object();
+    const machine = machines.machine([ ], obj);
+    
+    machine.execute([ OpCodes.Self ]);
+    
+    var stack = machine.stack();
+    
+    test.ok(stack);
+    test.ok(Array.isArray(stack));
+    test.equal(stack.length, 1);
+    test.strictEqual(stack[0], obj);
+};
+
