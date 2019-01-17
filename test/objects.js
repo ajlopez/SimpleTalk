@@ -87,3 +87,16 @@ exports['new instance'] = function (test) {
     test.equal(instance.class().class().name(), 'Person class');
 };
 
+exports['block object'] = function (test) {
+    const locals = [ 'a', 'b' ];
+    const bytecodes = [ 1, 2, 3 ];
+    
+    const block = objects.block(locals, bytecodes);
+    
+    test.ok(block);
+    test.equal(typeof block, 'object');
+    
+    test.deepEqual(block.localVarNames().value(), locals);
+    test.equal(block.bytecodes().value(), bytecodes);
+};
+

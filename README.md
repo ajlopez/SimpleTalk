@@ -9,7 +9,7 @@ TBD
 
 ## References
 
-TBD
+- [IBM Smalltalk Tutorial - Table of Contents](http://esug.org/data/Old/ibm/tutorial/CONTENT.HTML)
 
 ## Contribution
 
