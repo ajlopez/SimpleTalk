@@ -98,5 +98,8 @@ exports['block object'] = function (test) {
     
     test.deepEqual(block.localVarNames().value(), locals);
     test.equal(block.bytecodes().value(), bytecodes);
+    test.ok(block.class());
+    test.equal(block.class().name(), 'Block');
+    test.equal(block.class().class().name(), 'Block class');
 };
 
