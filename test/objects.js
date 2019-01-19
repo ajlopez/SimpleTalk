@@ -105,3 +105,23 @@ exports['block object'] = function (test) {
     test.equal(block.class().class().name(), 'Block class');
 };
 
+exports['method object'] = function (test) {
+    const klass = objects.class('Person', null, [ 'name', 'age' ], [ 'count' ]);
+    const args = [ 'x', 'y' ];
+    const locals = [ 'a', 'b' ];
+    const bytecodes = [ 1, 2, 3 ];
+    
+    const method = objects.method(klass, args, locals, bytecodes);
+    
+    test.ok(method);
+    test.equal(typeof method, 'object');
+    
+    test.equal(method.methodClass(), klass);
+    test.deepEqual(method.argumentNames().value(), args);
+    test.deepEqual(method.localVarNames().value(), locals);
+    test.equal(method.bytecodes().value(), bytecodes);
+    test.ok(method.class());
+    test.equal(method.class().name(), 'Method');
+    test.equal(method.class().class().name(), 'Method class');
+};
+
