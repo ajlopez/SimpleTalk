@@ -88,14 +88,16 @@ exports['new instance'] = function (test) {
 };
 
 exports['block object'] = function (test) {
+    const args = [ 'x', 'y' ];
     const locals = [ 'a', 'b' ];
     const bytecodes = [ 1, 2, 3 ];
     
-    const block = objects.block(locals, bytecodes);
+    const block = objects.block(args, locals, bytecodes);
     
     test.ok(block);
     test.equal(typeof block, 'object');
     
+    test.deepEqual(block.argumentNames().value(), args);
     test.deepEqual(block.localVarNames().value(), locals);
     test.equal(block.bytecodes().value(), bytecodes);
     test.ok(block.class());
