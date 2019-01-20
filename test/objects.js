@@ -126,3 +126,31 @@ exports['method object'] = function (test) {
     test.equal(method.class().class().name(), 'Method class');
 };
 
+exports['define instance method in class object'] = function (test) {
+    const klass = objects.class('Person', null, [ 'name', 'age' ], [ 'count' ]);
+    const args = [ 'x', 'y' ];
+    const locals = [ 'a', 'b' ];
+    const bytecodes = [ 1, 2, 3 ];
+    
+    const method = objects.method(klass, args, locals, bytecodes);
+
+    klass.method('foo:with:with:', method);
+    
+    const result = klass.method('foo:with:with:');
+    
+    test.ok(result);
+
+    test.equal(result.methodClass(), klass);
+    test.deepEqual(result.argumentNames().value(), args);
+    test.deepEqual(result.localVarNames().value(), locals);
+    test.equal(result.bytecodes().value(), bytecodes);
+    test.ok(result.class());
+    test.equal(result.class().name(), 'Method');
+    test.equal(result.class().class().name(), 'Method class');
+    
+    const methods = klass.methods().value();
+    
+    test.ok(methods['foo:with:with:']);
+    test.equal(methods['foo:with:with:'], result);
+};
+
