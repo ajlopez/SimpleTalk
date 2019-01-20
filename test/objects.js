@@ -49,6 +49,7 @@ exports['class object'] = function (test) {
     test.deepEqual(klass.instanceVarNames().value(), [ 'name', 'age' ]);
     test.deepEqual(klass.classVarNames().value(), [ 'count' ]);
     test.deepEqual(klass.class().instanceVarNames().value(), [ 'count' ]);
+    test.deepEqual(klass.methods().value(), {});
 };
 
 exports['class with superclass object'] = function (test) {
