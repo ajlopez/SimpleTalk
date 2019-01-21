@@ -154,3 +154,32 @@ exports['define instance method in class object'] = function (test) {
     test.equal(methods['foo:with:with:'], result);
 };
 
+exports['define class method in metaclass object'] = function (test) {
+    const klass = objects.class('Person', null, [ 'name', 'age' ], [ 'count' ]);
+    const args = [ 'x', 'y' ];
+    const locals = [ 'a', 'b' ];
+    const bytecodes = [ 1, 2, 3 ];
+    const metaclass = klass.class();
+    
+    const method = objects.method(metaclass, args, locals, bytecodes);
+
+    metaclass.method('foo:with:with:', method);
+    
+    const result = metaclass.method('foo:with:with:');
+    
+    test.ok(result);
+
+    test.equal(result.methodClass(), metaclass);
+    test.deepEqual(result.argumentNames().value(), args);
+    test.deepEqual(result.localVarNames().value(), locals);
+    test.equal(result.bytecodes().value(), bytecodes);
+    test.ok(result.class());
+    test.equal(result.class().name(), 'Method');
+    test.equal(result.class().class().name(), 'Method class');
+    
+    const methods = metaclass.methods().value();
+    
+    test.ok(methods['foo:with:with:']);
+    test.equal(methods['foo:with:with:'], result);
+};
+
