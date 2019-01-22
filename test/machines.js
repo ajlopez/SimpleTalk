@@ -136,3 +136,21 @@ exports['store instance variable'] = function (test) {
     test.strictEqual(obj.get(0).value(), 2);
 };
 
+exports['store and load local variable'] = function (test) {
+    var one = objects.value(1);
+    var two = objects.value(2);
+    
+    const obj = objects.object();
+    
+    const machine = machines.machine([ one, two ], obj);
+    
+    machine.execute([ OpCodes.LoadValue, 1, OpCodes.StoreLocalVariable, 0, OpCodes.LoadLocalVariable, 0 ]);
+    
+    var stack = machine.stack();
+    
+    test.ok(stack);
+    test.ok(Array.isArray(stack));
+    test.equal(stack.length, 1);
+    test.strictEqual(stack.pop().value(), 2);
+};
+
