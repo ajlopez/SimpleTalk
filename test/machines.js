@@ -108,7 +108,7 @@ exports['load instance variable'] = function (test) {
     
     const machine = machines.machine([ ], obj);
     
-    machine.execute([ OpCodes.LoadVariable, 0 ]);
+    machine.execute([ OpCodes.LoadInstanceVariable, 0 ]);
     
     var stack = machine.stack();
     
@@ -126,7 +126,7 @@ exports['store instance variable'] = function (test) {
     
     const machine = machines.machine([ one, two ], obj);
     
-    machine.execute([ OpCodes.LoadValue, 1, OpCodes.StoreVariable, 0 ]);
+    machine.execute([ OpCodes.LoadValue, 1, OpCodes.StoreInstanceVariable, 0 ]);
     
     var stack = machine.stack();
     
