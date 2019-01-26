@@ -10,6 +10,7 @@ TBD
 ## References
 
 - [IBM Smalltalk Tutorial - Table of Contents](http://esug.org/data/Old/ibm/tutorial/CONTENT.HTML)
+- [How to access class variables in Smalltalk](https://stackoverflow.com/questions/34050292/how-to-access-class-variables-in-smalltalk)
 
 ## Contribution
 
