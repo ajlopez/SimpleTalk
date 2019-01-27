@@ -92,8 +92,9 @@ exports['block object'] = function (test) {
     const args = [ 'x', 'y' ];
     const locals = [ 'a', 'b' ];
     const bytecodes = [ 1, 2, 3 ];
+    const values = [ 1, 4, 9 ];
     
-    const block = objects.block(args, locals, bytecodes);
+    const block = objects.block(args, locals, bytecodes, values);
     
     test.ok(block);
     test.equal(typeof block, 'object');
@@ -104,6 +105,12 @@ exports['block object'] = function (test) {
     test.ok(block.class());
     test.equal(block.class().name(), 'Block');
     test.equal(block.class().class().name(), 'Block class');
+
+    test.ok(Array.isArray(block.values().value()));
+    test.equal(block.values().value().length, values.length);
+    
+    for (var k = 0; k < values.length; k++)
+        test.equal(block.values().value()[k].value(), values[k]);
 };
 
 exports['method object'] = function (test) {
@@ -111,8 +118,9 @@ exports['method object'] = function (test) {
     const args = [ 'x', 'y' ];
     const locals = [ 'a', 'b' ];
     const bytecodes = [ 1, 2, 3 ];
+    const values = [ 1, 4, 9 ];
     
-    const method = objects.method(klass, args, locals, bytecodes);
+    const method = objects.method(klass, args, locals, bytecodes, values);
     
     test.ok(method);
     test.equal(typeof method, 'object');
@@ -124,6 +132,12 @@ exports['method object'] = function (test) {
     test.ok(method.class());
     test.equal(method.class().name(), 'Method');
     test.equal(method.class().class().name(), 'Method class');
+
+    test.ok(Array.isArray(method.values().value()));
+    test.equal(method.values().value().length, values.length);
+    
+    for (var k = 0; k < values.length; k++)
+        test.equal(method.values().value()[k].value(), values[k]);
 };
 
 exports['define instance method in class object'] = function (test) {
