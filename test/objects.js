@@ -105,6 +105,7 @@ exports['block object'] = function (test) {
     test.ok(block.class());
     test.equal(block.class().name(), 'Block');
     test.equal(block.class().class().name(), 'Block class');
+    test.equal(block.class().instanceSize(), 4);
 
     test.ok(Array.isArray(block.values().value()));
     test.equal(block.values().value().length, values.length);
@@ -132,6 +133,7 @@ exports['method object'] = function (test) {
     test.ok(method.class());
     test.equal(method.class().name(), 'Method');
     test.equal(method.class().class().name(), 'Method class');
+    test.equal(method.class().instanceSize(), 5);
 
     test.ok(Array.isArray(method.values().value()));
     test.equal(method.values().value().length, values.length);
