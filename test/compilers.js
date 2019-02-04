@@ -21,3 +21,16 @@ exports['compile integer constant'] = function (test) {
     test.strictEqual(values[0], 42);
 };
 
+exports['compile string constant'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    compiler.compileConstant("foo");
+    
+    const values = compiler.values();
+    
+    test.ok(values);
+    test.ok(Array.isArray(values));
+    test.equal(values.length, 1);
+    test.strictEqual(values[0], "foo");
+};
+
