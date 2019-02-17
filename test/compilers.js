@@ -75,3 +75,30 @@ exports['compile string constant'] = function (test) {
     test.equal(bytecodes[1], 0);
 };
 
+exports['compile send binary add operator'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    compiler.compileConstant(40);
+    compiler.compileConstant(2);
+    compiler.compileSend('+');
+    
+    const values = compiler.values();
+    
+    test.ok(values);
+    test.ok(Array.isArray(values));
+    test.equal(values.length, 2);
+    test.strictEqual(values[0], 40);
+    test.strictEqual(values[1], 2);
+    
+    const bytecodes = compiler.bytecodes();
+    
+    test.ok(bytecodes);
+    test.ok(Array.isArray(bytecodes));
+    test.equal(bytecodes.length, 5);
+    test.equal(bytecodes[0], OpCodes.LoadValue);
+    test.equal(bytecodes[1], 0);
+    test.equal(bytecodes[2], OpCodes.LoadValue);
+    test.equal(bytecodes[3], 1);
+    test.equal(bytecodes[4], OpCodes.Add);
+};
+
