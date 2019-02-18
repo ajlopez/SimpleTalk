@@ -129,3 +129,22 @@ exports['compile send binary subtract operator'] = function (test) {
     test.equal(bytecodes[4], OpCodes.Subtract);
 };
 
+exports['compile operators'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    compiler.compileSend('+');
+    compiler.compileSend('-');
+    compiler.compileSend('*');
+    compiler.compileSend('/');
+
+    const bytecodes = compiler.bytecodes();
+    
+    test.ok(bytecodes);
+    test.ok(Array.isArray(bytecodes));
+    test.equal(bytecodes.length, 4);
+    test.equal(bytecodes[0], OpCodes.Add);
+    test.equal(bytecodes[1], OpCodes.Subtract);
+    test.equal(bytecodes[2], OpCodes.Multiply);
+    test.equal(bytecodes[3], OpCodes.Divide);
+};
+
