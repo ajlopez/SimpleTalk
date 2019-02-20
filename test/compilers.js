@@ -165,10 +165,35 @@ exports['compile send unary selector'] = function (test) {
     
     test.ok(bytecodes);
     test.ok(Array.isArray(bytecodes));
-    test.equal(bytecodes.length, 4);
+    test.equal(bytecodes.length, 5);
     test.equal(bytecodes[0], OpCodes.LoadValue);
     test.equal(bytecodes[1], 0);
     test.equal(bytecodes[2], OpCodes.Send);
     test.equal(bytecodes[3], 0);
+    test.equal(bytecodes[4], 0);
 };
 
+exports['compile send selector with one argument'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    compiler.compileSend('do:');
+    
+    
+    const values = compiler.values();
+    
+    test.ok(values);
+    test.ok(Array.isArray(values));
+    test.equal(values.length, 1);
+    test.strictEqual(values[0], "do:");
+
+    const bytecodes = compiler.bytecodes();
+    
+    test.ok(bytecodes);
+    test.ok(Array.isArray(bytecodes));
+    test.equal(bytecodes.length, 5);
+    test.equal(bytecodes[0], OpCodes.LoadValue);
+    test.equal(bytecodes[1], 0);
+    test.equal(bytecodes[2], OpCodes.Send);
+    test.equal(bytecodes[3], 0);
+    test.equal(bytecodes[4], 1);
+};
