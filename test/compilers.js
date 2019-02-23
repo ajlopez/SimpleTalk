@@ -9,6 +9,27 @@ exports['create compiler as object'] = function (test) {
     test.equal(typeof compiler, 'object');
 };
 
+exports['compile argument'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    compiler.compileArgument('a');
+    
+    const arguments = compiler.arguments();
+    
+    test.ok(arguments);
+    test.ok(Array.isArray(arguments));
+    test.equal(arguments.length, 1);
+    test.strictEqual(arguments[0], 'a');
+    
+    const bytecodes = compiler.bytecodes();
+    
+    test.ok(bytecodes);
+    test.ok(Array.isArray(bytecodes));
+    test.equal(bytecodes.length, 2);
+    test.equal(bytecodes[0], OpCodes.LoadArgument);
+    test.equal(bytecodes[1], 0);
+};
+
 exports['compile integer constant'] = function (test) {
     const compiler = compilers.compiler();
     
