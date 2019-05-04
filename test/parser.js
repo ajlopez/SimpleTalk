@@ -34,3 +34,9 @@ exports['parse constants as terms'] = function (test) {
     parse(test, 'term', "'foo'", { ntype: 'constant', value: 'foo' });    
 };
 
+exports['parse constants as expressions'] = function (test) {
+    parse(test, 'expression', '42', { ntype: 'constant', value: 42 });
+    parse(test, 'expression', '3.14159', { ntype: 'constant', value: 3.14159 });    
+    parse(test, 'expression', "'foo'", { ntype: 'constant', value: 'foo' });    
+};
+
