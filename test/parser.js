@@ -3,6 +3,10 @@ const parser = require('../lib/parser');
 
 const geast = require('geast');
 
+function parse(test, type, text, expected) {
+    test.deepEqual(geast.toObject(parser.parse(type, text)), expected);
+}
+
 exports['parse integer constant'] = function (test) {
     const result = parser.parse('integer', '42');
     
@@ -22,5 +26,11 @@ exports['parse string constant'] = function (test) {
     
     test.ok(result);
     test.deepEqual(geast.toObject(result), { ntype: 'constant', value: 'foo' });
+};
+
+exports['parse constants as terms'] = function (test) {
+    parse(test, 'term', '42', { ntype: 'constant', value: 42 });
+    parse(test, 'term', '3.14159', { ntype: 'constant', value: 3.14159 });    
+    parse(test, 'term', "'foo'", { ntype: 'constant', value: 'foo' });    
 };
 
