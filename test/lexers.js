@@ -32,7 +32,7 @@ exports['get two names'] = function (test) {
     test.equal(lexer.next(), null);
 }
 
-exports['get name and punctuation'] = function (test) {
+exports['get name and delimiter'] = function (test) {
     var lexer = lexers.lexer("name)");
     
     var token = lexer.next();
@@ -45,7 +45,7 @@ exports['get name and punctuation'] = function (test) {
     
     test.ok(token);
     test.equal(token.value, ")");
-    test.equal(token.type, TokenType.Punctuation);
+    test.equal(token.type, TokenType.Delimiter);
     
     test.equal(lexer.next(), null);
 }
@@ -123,7 +123,7 @@ exports['get integer and point'] = function (test) {
     
     test.ok(token);
     test.equal(token.value, ".");
-    test.equal(token.type, TokenType.Punctuation);
+    test.equal(token.type, TokenType.Delimiter);
     
     test.equal(lexer.next(), null);
 }
@@ -151,7 +151,7 @@ exports['get symbol and dot'] = function(test) {
 	token = lexer.next();
 
 	test.notEqual(null, token);
-	test.equal(token.type, TokenType.Punctuation);
+	test.equal(token.type, TokenType.Delimiter);
 	test.equal(".", token.value);
 
 	test.equal(null, lexer.next());
@@ -185,7 +185,7 @@ exports['get punctuation marks'] = function (test) {
     
         test.ok(token);
         test.equal(token.value, punctuations[k]);
-        test.equal(token.type, TokenType.Punctuation);
+        test.equal(token.type, TokenType.Delimiter);
     }
 }
 
@@ -198,7 +198,7 @@ exports['get begin dynamic array as punctuation'] = function (test) {
     
     test.ok(token);
     test.equal(token.value, '#(');
-    test.equal(token.type, TokenType.Punctuation);
+    test.equal(token.type, TokenType.Delimiter);
     
     test.equal(lexer.next(), null);
 }
@@ -218,13 +218,13 @@ exports['get return empty dynamic array'] = function (test) {
     
     test.ok(token);
     test.equal(token.value, '#(');
-    test.equal(token.type, TokenType.Punctuation);
+    test.equal(token.type, TokenType.Delimiter);
     
     token = lexer.next();
     
     test.ok(token);
     test.equal(token.value, ')');
-    test.equal(token.type, TokenType.Punctuation);
+    test.equal(token.type, TokenType.Delimiter);
     
     test.equal(lexer.next(), null);
 }
