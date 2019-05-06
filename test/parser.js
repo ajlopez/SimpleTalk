@@ -44,6 +44,10 @@ exports['parse name'] = function (test) {
     parse(test, 'name', 'foo', { ntype: 'name', name: 'foo' });
 };
 
+exports['parse name as term'] = function (test) {
+    parse(test, 'term', 'foo', { ntype: 'name', name: 'foo' });
+};
+
 exports['parse arithmetic expressions'] = function (test) {
     parse(test, 'expression', '40+2', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
     parse(test, 'expression', '20*2+2', { ntype: 'binary', operator: '+', left: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 20 }, right: { ntype: 'constant', value: 2 }}, right: { ntype: 'constant', value: 2 }});
@@ -56,3 +60,6 @@ exports['parse arithmetic expressions'] = function (test) {
     parse(test, 'expression', '(40+2)', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
 };
 
+exports['parse unary expressions'] = function (test) {
+    parse(test, 'expression', 'foo bar', { ntype: 'unary', operator: 'bar', expression: { ntype: 'name', name: 'foo' }});
+};
