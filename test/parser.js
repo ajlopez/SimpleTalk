@@ -63,3 +63,8 @@ exports['parse arithmetic expressions'] = function (test) {
 exports['parse unary expressions'] = function (test) {
     parse(test, 'expression', 'foo bar', { ntype: 'unary', operator: 'bar', expression: { ntype: 'name', name: 'foo' }});
 };
+
+exports['parse nary expressions'] = function (test) {
+    parse(test, 'expression', 'foo bar: 42', { ntype: 'nary', selector: 'bar:', target: { ntype: 'name', name: 'foo' }, arguments: [ { ntype: 'constant', value: 42 } ]});
+    parse(test, 'expression', 'foo bar: 42 with: 3', { ntype: 'nary', selector: 'bar:with:', target: { ntype: 'name', name: 'foo' }, arguments: [ { ntype: 'constant', value: 42 }, { ntype: 'constant', value: 3 } ]});
+};
