@@ -67,4 +67,6 @@ exports['parse unary expressions'] = function (test) {
 exports['parse nary expressions'] = function (test) {
     parse(test, 'expression', 'foo bar: 42', { ntype: 'nary', selector: 'bar:', target: { ntype: 'name', name: 'foo' }, arguments: [ { ntype: 'constant', value: 42 } ]});
     parse(test, 'expression', 'foo bar: 42 with: 3', { ntype: 'nary', selector: 'bar:with:', target: { ntype: 'name', name: 'foo' }, arguments: [ { ntype: 'constant', value: 42 }, { ntype: 'constant', value: 3 } ]});
+    parse(test, 'expression', 'foo bar: 42 with: 3 with: 1', { ntype: 'nary', selector: 'bar:with:with:', target: { ntype: 'name', name: 'foo' }, arguments: [ { ntype: 'constant', value: 42 }, { ntype: 'constant', value: 3 }, { ntype: 'constant', value: 1 } ]});
 };
+
