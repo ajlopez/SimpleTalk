@@ -225,7 +225,7 @@ exports['instance method in superclass object'] = function (test) {
     
     const methods = klass.methods().value();
     
-    test.deepEqual(methods, []);
+    test.deepEqual(methods, {});
     
     const supermethods = superclass.methods().value();
     
