@@ -11,12 +11,12 @@ exports['create machine'] = function (test) {
 };
 
 exports['load argument'] = function (test) {    
-    var answer = objects.value(42);
+    const answer = objects.value(42);
     const machine = machines.machine([ ]);
     
     machine.execute([ OpCodes.LoadArgument, 0 ], [ answer ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -25,14 +25,14 @@ exports['load argument'] = function (test) {
 };
 
 exports['add two values'] = function (test) {
-    var one = objects.value(1);
-    var two = objects.value(2);
+    const one = objects.value(1);
+    const two = objects.value(2);
     
     const machine = machines.machine([ one, two ]);
     
     machine.execute([ OpCodes.LoadValue, 0, OpCodes.LoadValue, 1, OpCodes.Add ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -41,14 +41,14 @@ exports['add two values'] = function (test) {
 };
 
 exports['subtract two values'] = function (test) {
-    var one = objects.value(1);
-    var two = objects.value(2);
+    const one = objects.value(1);
+    const two = objects.value(2);
     
     const machine = machines.machine([ one, two ]);
     
     machine.execute([ OpCodes.LoadValue, 0, OpCodes.LoadValue, 1, OpCodes.Subtract ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -57,14 +57,14 @@ exports['subtract two values'] = function (test) {
 };
 
 exports['multiply two values'] = function (test) {
-    var one = objects.value(2);
-    var two = objects.value(21);
+    const one = objects.value(2);
+    const two = objects.value(21);
     
     const machine = machines.machine([ one, two ]);
     
     machine.execute([ OpCodes.LoadValue, 0, OpCodes.LoadValue, 1, OpCodes.Multiply ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -73,14 +73,14 @@ exports['multiply two values'] = function (test) {
 };
 
 exports['divide two values'] = function (test) {
-    var one = objects.value(2);
-    var two = objects.value(84);
+    const one = objects.value(2);
+    const two = objects.value(84);
     
     const machine = machines.machine([ one, two ]);
     
     machine.execute([ OpCodes.LoadValue, 0, OpCodes.LoadValue, 1, OpCodes.Divide ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -94,7 +94,7 @@ exports['self'] = function (test) {
     
     machine.execute([ OpCodes.Self ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -110,7 +110,7 @@ exports['load instance variable'] = function (test) {
     
     machine.execute([ OpCodes.LoadInstanceVariable, 0 ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -119,8 +119,8 @@ exports['load instance variable'] = function (test) {
 };
 
 exports['store instance variable'] = function (test) {
-    var one = objects.value(1);
-    var two = objects.value(2);
+    const one = objects.value(1);
+    const two = objects.value(2);
     
     const obj = objects.object();
     
@@ -128,7 +128,7 @@ exports['store instance variable'] = function (test) {
     
     machine.execute([ OpCodes.LoadValue, 1, OpCodes.StoreInstanceVariable, 0 ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -137,8 +137,8 @@ exports['store instance variable'] = function (test) {
 };
 
 exports['store and load local variable'] = function (test) {
-    var one = objects.value(1);
-    var two = objects.value(2);
+    const one = objects.value(1);
+    const two = objects.value(2);
     
     const obj = objects.object();
     
@@ -146,7 +146,7 @@ exports['store and load local variable'] = function (test) {
     
     machine.execute([ OpCodes.LoadValue, 1, OpCodes.StoreLocalVariable, 0, OpCodes.LoadLocalVariable, 0 ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
@@ -155,8 +155,8 @@ exports['store and load local variable'] = function (test) {
 };
 
 exports['return value'] = function (test) {
-    var one = objects.value(1);
-    var two = objects.value(2);
+    const one = objects.value(1);
+    const two = objects.value(2);
     
     const obj = objects.object();
     
@@ -164,7 +164,7 @@ exports['return value'] = function (test) {
     
     machine.execute([ OpCodes.LoadValue, 1, OpCodes.Return, OpCodes.LoadLocalVariable, 0 ]);
     
-    var stack = machine.stack();
+    const stack = machine.stack();
     
     test.ok(stack);
     test.ok(Array.isArray(stack));
