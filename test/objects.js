@@ -110,7 +110,7 @@ exports['block object'] = function (test) {
     test.ok(Array.isArray(block.values().value()));
     test.equal(block.values().value().length, values.length);
     
-    for (var k = 0; k < values.length; k++)
+    for (let k = 0; k < values.length; k++)
         test.equal(block.values().value()[k].value(), values[k]);
 };
 
@@ -138,7 +138,7 @@ exports['method object'] = function (test) {
     test.ok(Array.isArray(method.values().value()));
     test.equal(method.values().value().length, values.length);
     
-    for (var k = 0; k < values.length; k++)
+    for (let k = 0; k < values.length; k++)
         test.equal(method.values().value()[k].value(), values[k]);
 };
 
@@ -232,3 +232,4 @@ exports['instance method in superclass object'] = function (test) {
     test.ok(supermethods['foo:with:with:']);
     test.equal(supermethods['foo:with:with:'], result);
 };
+
