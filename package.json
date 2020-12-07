@@ -15,15 +15,15 @@
   },
   "main": "./lib/simpletalk.js",
   "engines": {
-    "node": ">= 8.0.0"
+        "node": ">= 6.14.0"
   },
   "scripts": {
     "test": "simpleunit ./test -r"
   },
   "dependencies": {
     "geast": "0.0.9",
-    "gelex": "0.0.5",
-    "gepars": "0.0.5"
+    "gelex": "0.0.7",
+    "gepars": "0.0.8"
   },
   "devDependencies": {
     "simpleunit": "0.0.8"
