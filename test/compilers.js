@@ -1,6 +1,6 @@
 
-var compilers = require('../lib/compilers');
-var OpCodes = require('../lib/machines').OpCodes;
+const compilers = require('../lib/compilers');
+const OpCodes = require('../lib/machines').OpCodes;
 
 exports['create compiler as object'] = function (test) {
     const compiler = compilers.compiler();
